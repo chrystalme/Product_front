@@ -6,8 +6,50 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.product_page_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+.products_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.product {
+  margin: 0 20px;
+  border: 1px solid gray;
+  width: fit-content;
+}
+
+.product_details {
+  margin-right: 20px;
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
+.btn_add {
+  margin-right: 5px;
+}
+
+.form_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product_form {
+  margin: 0 20px;
+}
+.form_item {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+.form_item label {
+  padding-right: 10px;
 }

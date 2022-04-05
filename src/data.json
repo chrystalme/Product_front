@@ -1,0 +1,32 @@
+[
+  {
+    "Sku": "JVC200123",
+    "Name": "Acme Disc",
+    "Price": 1.25,
+    "Type": { "Metric": "Size", "Value": [700], "Unit": "MB" }
+  },
+  {
+    "Sku": "JVC200124",
+    "Name": "Acme Disc 2",
+    "Price": 1.04,
+    "Type": { "Metric": "Size", "Value": [700], "Unit": "MB" }
+  },
+  {
+    "Sku": "JVC200125",
+    "Name": "Acme Disc 3",
+    "Price": 1.99,
+    "Type": { "Metric": "Size", "Value": [700], "Unit": "MB" }
+  },
+  {
+    "Sku": "JVC200126",
+    "Name": "Acme Disc 4",
+    "Price": 1.1,
+    "Type": { "Metric": "Size", "Value": [700], "Unit": "MB" }
+  },
+  {
+    "Sku": "GGWP0007",
+    "Name": "War and Peace",
+    "Price": 20,
+    "Type": { "Metric": "Weight", "Value": [2], "Unit": "KG" }
+  }
+]

@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CheckBox(props) {
-  const { handleClick } = props;
+function CheckBox({ value, onChange }) {
+  // const { checked, setChecked } = useState(false);
   return (
     <>
       <input
         type='checkbox'
+        value={value}
         className='delete-checkbox'
-        onClick={handleClick}
+        onChange={onChange}
       />
     </>
   );
 }
 
 CheckBox.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  onChanged: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default CheckBox;
