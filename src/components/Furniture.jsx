@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Furniture = ({ height, width, length }) => {
+const Furniture = ({ height, width, length, id = 'furniture' }) => {
   return (
-    <div className='furniture_input'>
+    <div className='furniture_input' id={id} style={{ display: 'none' }}>
       <label htmlFor='height'>Height(CM): </label>
       <input
         type='text'

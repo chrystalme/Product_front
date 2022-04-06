@@ -1,8 +1,12 @@
 import React from 'react';
+// import {useSe}
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 function Header(props) {
+  const handleClick = () => {
+    console.log('you have mass deleted');
+  };
   return (
     <header className='product_page_header'>
       <div className='header_left'>
@@ -11,11 +15,9 @@ function Header(props) {
       <div className='header_right'>
         <NavLink to='addProduct'>
           {' '}
-          <button className='btn_add' type='button'>
-            Add
-          </button>
+          <button className='btn_add'>Add</button>
         </NavLink>
-        <button>Mass Delete</button>
+        <button onClick={handleClick}>Mass Delete</button>
       </div>
     </header>
   );

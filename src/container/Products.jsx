@@ -12,20 +12,13 @@ const Products = ({ products }) => {
     const { deleteSku } = toDelete;
 
     console.log(`${value} is ${checked}`);
-
-    // Case 1 : The user checks the box
-    if (checked) {
-      setToDelete({
-        deleteSku: [...deleteSku, value],
-      });
-    }
-
-    // Case 2  : The user unchecks the box
-    else {
-      setToDelete({
-        deleteSku: deleteSku.filter(e => e !== value),
-      });
-    }
+    checked
+      ? setToDelete({
+          deleteSku: [...deleteSku, value],
+        })
+      : setToDelete({
+          deleteSku: deleteSku.filter(e => e !== value),
+        });
   };
   console.log(toDelete);
   return (

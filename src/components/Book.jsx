@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Book = ({ weight }) => {
+const Book = ({ weight, id = 'book' }) => {
   return (
-    <div className='Book'>
+    <div className='Book' id={id} style={{ display: 'none' }}>
       <label htmlFor='weight'>Weight(KG): </label>
       <input
         className='weight-input'

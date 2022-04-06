@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Dvd({ size }) {
+function Dvd({ size, id = 'dvd' }) {
   return (
-    <div className='Dvd'>
+    <div className='Dvd' id={id} style={{ display: 'block' }}>
       <label htmlFor='weight'>Size(MB): </label>
       <input
         className='weight-input'
@@ -17,6 +17,7 @@ function Dvd({ size }) {
 
 Dvd.propTypes = {
   size: PropTypes.number,
+  show: PropTypes.string,
 };
 
 export default Dvd;
