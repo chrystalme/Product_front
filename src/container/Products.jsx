@@ -1,10 +1,11 @@
 import { useState, useId } from 'react';
 import PropTypes from 'prop-types';
 import Product from '../components/Product';
-import data from '../data.json';
+import { useSelector } from 'react-redux';
 
 const Products = ({ products }) => {
-  products = data;
+  products = useSelector(state => state.productReducer.products);
+
   const [toDelete, setToDelete] = useState({ deleteSku: [] });
   const handleChange = e => {
     // Destructuring

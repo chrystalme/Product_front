@@ -46,11 +46,14 @@ export const productSlice = createSlice({
       );
       if (!existingProduct) {
         state.products.push({
-          Sku: newProduct.sku,
-          Name: newProduct.name,
-          Price: newProduct.price,
-          Type: newProduct.type,
+          Sku: newProduct.Sku,
+          Name: newProduct.Name,
+          Price: newProduct.Price,
+          Type: newProduct.Type,
         });
+      }
+      if (existingProduct) {
+        console.log('Product already exist.');
       }
       console.log(newProduct);
     },

@@ -1,34 +1,51 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProduct } from '../feature/product/productSlice';
 import PropTypes from 'prop-types';
 import Furniture from './Furniture';
 import Book from './Book';
 import Dvd from './Dvd';
 
 const AddProduct = props => {
-  const typeView = [<Dvd />, <Furniture />, <Book />];
+  const products = useSelector(state => state.productReducer);
+  const dispatch = useDispatch();
   const [itemType, setItemType] = useState('');
-  const [sku, setSku] = useState('');
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
-  const [type, setType] = useState('');
+  const [product, setProduct] = useState({
+    Sku: '',
+    Name: '',
+    Price: '',
+    Type: {
+      Metric: '',
+      value: [],
+      unit: '',
+    },
+  });
+  const { Sku, Name, Price, Type } = product;
+
   const handleSwitchChange = event => {
     const { value } = event.target;
     setItemType(value);
   };
   const handleSubmit = event => {
     event.preventDefault();
-    const { value } = event.target;
-    setPrice(value);
-    setSku(value);
-    setName(value);
-    const data = {};
-
-    console.log('Form is being submitted');
+    dispatch(addProduct(product));
+    console.log(products);
+    setProduct({
+      Sku: '',
+      Name: '',
+      Price: '',
+      Type: {
+        Metric: '',
+        value: [],
+        unit: '',
+      },
+    });
   };
 
   const handleReset = event => {
     console.log('form will reset');
   };
+
   return (
     <form className='product_form' onSubmit={handleSubmit}>
       <div>
@@ -41,15 +58,36 @@ const AddProduct = props => {
         </div>
         <div className='form_item'>
           <label htmlFor='sku'>SKU</label>
-          <input type='text' id='sku' value={sku} />
+          <input
+            type='text'
+            required
+            id='sku'
+            name='Sku'
+            value={Sku}
+            onChange={e => setProduct({ ...product, Sku: e.target.value })}
+          />
         </div>
         <div className='form_item'>
           <label htmlFor='name'>Name</label>
-          <input type='text' id='name' value={name} />
+          <input
+            type='text'
+            id='name'
+            required
+            name='Name'
+            value={Name}
+            onChange={e => setProduct({ ...product, Name: e.target.value })}
+          />
         </div>
         <div className='form_item'>
           <label htmlFor='price'>Price ($)</label>
-          <input type='number' id='price' value={price} />
+          <input
+            type='number'
+            required
+            id='price'
+            name='Price'
+            value={Price}
+            onChange={e => setProduct({ ...product, Price: e.target.value })}
+          />
         </div>
         <div className='form_item'>
           <label htmlFor='type_switcher'>Type Switcher</label>
@@ -60,12 +98,36 @@ const AddProduct = props => {
             <option value='book'>Book</option>
           </select>
         </div>
-        <div id='switcher'>
-          {itemType}
-          {/* {typeView.filter(item => console.log(item))} */}
-          {/* <Dvd />
-          <Furniture />
-          <Book /> */}
+        <div className='form_item' id='switcher'>
+          {itemType === 'furniture' && <Furniture />}
+          {itemType === 'dvd' && (
+            <Dvd
+              onChange={e =>
+                setProduct({
+                  ...product,
+                  Type: {
+                    Metric: 'Size',
+                    value: [e.target.value],
+                    unit: 'MB',
+                  },
+                })
+              }
+            />
+          )}
+          {itemType === 'book' && (
+            <Book
+              onChange={e =>
+                setProduct({
+                  ...product,
+                  Type: {
+                    Metric: 'Weight',
+                    value: [e.target.value],
+                    unit: 'Kg',
+                  },
+                })
+              }
+            />
+          )}
         </div>
       </div>
     </form>
