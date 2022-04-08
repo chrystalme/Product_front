@@ -39,6 +39,9 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
+    getProducts: state => {
+      return state.products;
+    },
     addProduct: (state, action) => {
       const newProduct = action.payload;
       const existingProduct = state.products.find(
@@ -59,16 +62,14 @@ export const productSlice = createSlice({
     },
     removeProduct: (state, action) => {
       const prevProduct = action.payload;
-      prevProduct.forEach(element => {
-        state.products = state.products.filter(
-          product => product.Sku !== element
-        );
-      });
+      state.products = state.products.filter(
+        product => !prevProduct.includes(product.Sku)
+      );
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addProduct, removeProduct } = productSlice.actions;
+export const { addProduct, removeProduct, getProducts } = productSlice.actions;
 
 export default productSlice.reducer;

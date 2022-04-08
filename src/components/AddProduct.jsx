@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Children, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../feature/product/productSlice';
 import PropTypes from 'prop-types';
@@ -9,6 +9,9 @@ import Dvd from './Dvd';
 const AddProduct = props => {
   const products = useSelector(state => state.productReducer);
   const dispatch = useDispatch();
+  const [height, setHeight] = useState();
+  const [length, setLength] = useState();
+  const [width, setWidth] = useState();
   const [itemType, setItemType] = useState('');
   const [product, setProduct] = useState({
     Sku: '',
@@ -28,18 +31,21 @@ const AddProduct = props => {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(addProduct(product));
+
+    const recordAdd = dispatch(addProduct(product));
     console.log(products);
-    setProduct({
-      Sku: '',
-      Name: '',
-      Price: '',
-      Type: {
-        Metric: '',
-        value: [],
-        unit: '',
-      },
-    });
+    console.log(recordAdd);
+
+    // setProduct({
+    //   Sku: '',
+    //   Name: '',
+    //   Price: '',
+    //   Type: {
+    //     Metric: '',
+    //     value: [],
+    //     unit: '',
+    //   },
+    // });
   };
 
   const handleReset = event => {
@@ -99,7 +105,26 @@ const AddProduct = props => {
           </select>
         </div>
         <div className='form_item' id='switcher'>
-          {itemType === 'furniture' && <Furniture />}
+          {itemType === 'furniture' && (
+            <Furniture
+              height={parseInt(height)}
+              width={parseInt(width)}
+              length={parseInt(length)}
+              onChange={() =>
+                setProduct({
+                  ...product,
+                  Type: {
+                    Metric: 'Dimension',
+                    value: [height, width, length],
+                    unit: 'CM',
+                  },
+                })
+              }
+              changeHeight={e => setHeight(e.target.value)}
+              changeLength={e => setLength(e.target.value)}
+              changeWidth={e => setWidth(e.target.value)}
+            />
+          )}
           {itemType === 'dvd' && (
             <Dvd
               onChange={e =>

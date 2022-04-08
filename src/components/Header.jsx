@@ -3,10 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-function Header(props) {
-  const handleClick = () => {
-    console.log('you have mass deleted');
-  };
+function Header({ handleDelete }) {
   return (
     <header className='product_page_header'>
       <div className='header_left'>
@@ -17,12 +14,14 @@ function Header(props) {
           {' '}
           <button className='btn_add'>Add</button>
         </NavLink>
-        <button onClick={handleClick}>Mass Delete</button>
+        <button onClick={handleDelete}>Mass Delete</button>
       </div>
     </header>
   );
 }
 
-Header.propTypes = {};
+Header.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+};
 
 export default Header;
