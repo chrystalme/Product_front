@@ -23,6 +23,7 @@ const Furniture = ({
         <input
           type='number'
           name='height'
+          min='0'
           placeholder='Enter height in centimeter'
           onChange={changeHeight}
           value={height}

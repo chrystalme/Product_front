@@ -36,16 +36,12 @@ const AddProduct = props => {
     console.log(products);
     console.log(recordAdd);
 
-    // setProduct({
-    //   Sku: '',
-    //   Name: '',
-    //   Price: '',
-    //   Type: {
-    //     Metric: '',
-    //     value: [],
-    //     unit: '',
-    //   },
-    // });
+    setProduct({
+      Sku: '',
+      Name: '',
+      Price: '',
+      Type: '',
+    });
   };
 
   const handleReset = event => {
@@ -107,9 +103,6 @@ const AddProduct = props => {
         <div className='form_item' id='switcher'>
           {itemType === 'furniture' && (
             <Furniture
-              height={parseInt(height)}
-              width={parseInt(width)}
-              length={parseInt(length)}
               onChange={() =>
                 setProduct({
                   ...product,

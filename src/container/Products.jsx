@@ -28,7 +28,7 @@ const Products = ({ products }) => {
         });
   };
 
-  // console.log(toDelete);
+  console.log(toDelete);
   return (
     <>
       <Header
