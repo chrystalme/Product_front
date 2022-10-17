@@ -5,12 +5,12 @@ import Header from '../components/Header';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts, removeProduct } from '../feature/product/productSlice';
 
-const Products = ({ products }) => {
-  products = useSelector(state => state.products.products);
+const Products = () => {
+  const products = useSelector(state => state.products.products);
   const dispatch = useDispatch();
   useEffect(() => {
-    // products = dispatch(getProducts());
-  }, [products]);
+    // dispatch(getProducts());
+  }, [products, dispatch]);
   const [toDelete, setToDelete] = useState({ deleteSku: [] });
 
   const handleChange = e => {

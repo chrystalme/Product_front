@@ -1,12 +1,14 @@
-import React, { Children, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../feature/product/productSlice';
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 import Furniture from './Furniture';
 import Book from './Book';
 import Dvd from './Dvd';
 
 const AddProduct = props => {
+  const navigate = useNavigate();
   const products = useSelector(state => state.productReducer);
   const dispatch = useDispatch();
   const [height, setHeight] = useState();
@@ -23,7 +25,7 @@ const AddProduct = props => {
       unit: '',
     },
   });
-  const { Sku, Name, Price, Type } = product;
+  const { Sku, Name, Price /*, Type */ } = product;
 
   const handleSwitchChange = event => {
     const { value } = event.target;
@@ -35,13 +37,13 @@ const AddProduct = props => {
     const recordAdd = dispatch(addProduct(product));
     console.log(products);
     console.log(recordAdd);
-
     setProduct({
       Sku: '',
       Name: '',
       Price: '',
       Type: '',
     });
+    navigate('/');
   };
 
   const handleReset = event => {
@@ -152,6 +154,6 @@ const AddProduct = props => {
   );
 };
 
-AddProduct.propTypes = {};
+// AddProduct.propTypes = {};
 
 export default AddProduct;
